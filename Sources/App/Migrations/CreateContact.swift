@@ -27,6 +27,7 @@ struct CreateContact: Migration {
             .field(Contact.Keys.supportLevel, .string)
             .unique(on: Contact.Keys.email, Contact.Keys.phone)
             .create()
+        //TODO: Constrain so that EITHER first name or last name are not nil - 2/11/22
     }
     
     func revert(on database: Database) -> EventLoopFuture<Void> {
