@@ -7,7 +7,9 @@ public func configure(_ app: Application) throws {
     // uncomment to serve files from /Public folder
     // app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
 
-    if var postgresConfig = PostgresConfiguration(url: Environment.databaseURL) {
+    if let databaseString = Environment.get("DATABASE_URL"),
+       let url = URL(string: databaseString),
+       var postgresConfig = PostgresConfiguration(url: url) {
         var tlsConfig = TLSConfiguration.makeClientConfiguration()
         tlsConfig.certificateVerification = .none
         postgresConfig.tlsConfiguration = tlsConfig
