@@ -10,28 +10,28 @@ import Fluent
 struct CreateContact: Migration {
     
     func prepare(on database: Database) -> EventLoopFuture<Void> {
-        return database.schema(Contact.schema)
+        return database.schema("contacts")
             .id()
-            .field(Contact.Keys.firstName, .string, .required)
-            .field(Contact.Keys.lastName, .string)
-            .field(Contact.Keys.phone, .string)
-            .field(Contact.Keys.email, .string)
-            .field(Contact.Keys.address1, .string)
-            .field(Contact.Keys.address2, .string)
-            .field(Contact.Keys.city, .string)
-            .field(Contact.Keys.stateProvince, .string)
-            .field(Contact.Keys.postalCode, .string)
-            .field(Contact.Keys.country, .string)
-            .field(Contact.Keys.firstContact, .string, .required)
-            .field(Contact.Keys.lastContact, .string, .required)
-            .field(Contact.Keys.supportLevel, .string)
-            .unique(on: Contact.Keys.email, Contact.Keys.phone)
+            .field("first_name", .string, .required)
+            .field("last_name", .string)
+            .field("phone", .string)
+            .field("email", .string)
+            .field("address1", .string)
+            .field("address2", .string)
+            .field("city", .string)
+            .field("state_province", .string)
+            .field("postal_code", .string)
+            .field("country", .string)
+            .field("first_contact", .string, .required)
+            .field("last_contact", .string, .required)
+            .field("support_level", .string)
+            .unique(on: "email", "phone")
             .create()
         //TODO: Constrain so that EITHER first name or last name are not nil - 2/11/22
     }
     
     func revert(on database: Database) -> EventLoopFuture<Void> {
-        return database.schema(Contact.schema).delete()
+        return database.schema("contacts").delete()
     }
     
 }

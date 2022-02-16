@@ -5,18 +5,22 @@
 //  Created by Matthew Wylder on 2/11/22.
 //
 
-import Foundation
+import Fluent
+import Vapor
 
 final class Address: Model, Content {
     static let schema = "addresses"
     
-    @Field(key: Keys.address1)
+    @ID(key: .id)
+    var id: UUID?
+    
+    @Field(key: "address1")
     var address1: String?
     
-    @Field(key: Keys.address2)
+    @Field(key: "address2")
     var address2: String?
     
-    @Field(key: Keys.city)
+    @Field(key: "city")
     var city: String?
     
     @Field(key: "state_province")

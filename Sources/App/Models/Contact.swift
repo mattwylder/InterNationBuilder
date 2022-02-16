@@ -9,25 +9,8 @@ import Fluent
 import Vapor
 
 final class Contact: Model, Content {
-    
-    struct Keys {
-        static let firstName = FieldKey.string("firstName")
-        static let lastName = FieldKey.string("lastName")
-        static let phone = FieldKey.string("phone")
-        static let email = FieldKey.string("email")
-        static let address1 = FieldKey.string("address1")
-        static let address2 = FieldKey.string("address2")
-        static let city = FieldKey.string("city")
-        static let stateProvince = FieldKey.string("stateProvince")
-        static let country = FieldKey.string("country")
-        static let postalCode = FieldKey.string("postalCode")
-        static let firstContact = FieldKey.string("firstContact")
-        static let lastContact = FieldKey.string("lastContact")
-        static let supportLevel = FieldKey.string("supportLevel")
-    }
-    
-    enum SupportLevel: Codable {
-        case strongSupport, weakSupport, undecided, weakOppose, strongOppose
+    enum SupportLevel: Int, Codable {
+        case strongSupport = 1, weakSupport, undecided, weakOppose, strongOppose
     }
     
     static let schema = "contacts"
@@ -35,43 +18,43 @@ final class Contact: Model, Content {
     @ID(key: .id)
     var id: UUID?
     
-    @Field(key: Keys.firstName)
+    @Field(key: "first_name")
     var firstName: String?
     
-    @Field(key: Keys.lastName)
+    @Field(key: "last_name")
     var lastName: String?
     
-    @Field(key: Keys.phone)
+    @Field(key: "phone")
     var phone: String?
     
-    @Field(key: Keys.email)
+    @Field(key: "email")
     var email: String?
     
-    @Field(key: Keys.address1)
+    @Field(key: "address1")
     var address1: String?
     
-    @Field(key: Keys.address2)
+    @Field(key: "address2")
     var address2: String?
     
-    @Field(key: Keys.city)
+    @Field(key: "city")
     var city: String?
     
-    @Field(key: Keys.stateProvince)
+    @Field(key: "state_province")
     var stateProvince: String?
     
-    @Field(key: Keys.postalCode)
+    @Field(key: "postal_code")
     var postalCode: String?
     
-    @Field(key: Keys.country)
+    @Field(key: "country")
     var country: String?
     
-    @Field(key: Keys.firstContact)
+    @Field(key: "first_contact")
     var firstContact: Date
     
-    @Field(key: Keys.lastContact)
+    @Field(key: "last_contact")
     var lastContact: Date
     
-    @Field(key: Keys.supportLevel)
+    @Field(key: "support_level")
     var supportLevel: SupportLevel?
     
     init() { }
