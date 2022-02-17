@@ -24,7 +24,8 @@ public func configure(_ app: Application) throws {
         ), as: .psql)
     }
 
-    app.migrations.add(CreateContact())
+    app.migrations.add(CreateAddress())
+    app.migrations.add(UpdateContact())
     
     if app.environment == .development {
         try app.autoMigrate().wait()

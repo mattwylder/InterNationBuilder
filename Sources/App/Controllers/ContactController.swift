@@ -12,6 +12,7 @@ struct ContactController: RouteCollection {
     func boot(routes: RoutesBuilder) throws {
         let contactRoutes = routes.grouped("contacts")
         contactRoutes.get(use: index)
+        contactRoutes.post(use: create)
     }
     
     func index(request: Request) throws -> EventLoopFuture<[Contact]> {
